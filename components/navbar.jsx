@@ -1,21 +1,27 @@
 import Link from "next/link";
 
 const Navbar = () => {
+
+  const routes = [
+    { "title": "Home", "slug": "" },
+    { "title": "Blog", "slug": "blog" },
+    { "title": "404", "slug": "random-route" },
+  ]
+
   return (
-    <nav>
-      <ul>
-        <li>
-          <Link href={"/"}>Home</Link>
-        </li>
-        <li>
-          <Link href={"/categories"}>Categories</Link>
-        </li>
-        <li>
-          <Link href={"/about"}>About</Link>
-        </li>
-        <li>
-          <Link href={"/blog"}>Blog</Link>
-        </li>
+    <nav className="p-4 flex place-content-between bg-sky-950 text-slate-200">
+      <div id="logo" className="hover:text-slate-500">
+        <Link href={'/'}>
+          <h1 className="font-extrabold">Simple Blog</h1>
+        </Link>
+      </div>
+
+      <ul className="flex gap-3" role="list">
+        {routes.map((route) => (
+          <li key={route.index} className="hover:text-slate-500">
+            <Link href={`/${route.slug}`}>{route.title}</Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
